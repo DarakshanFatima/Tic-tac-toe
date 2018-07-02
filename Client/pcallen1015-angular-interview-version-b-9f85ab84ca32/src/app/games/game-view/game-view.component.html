@@ -1,0 +1,16 @@
+<div class="game-view">
+  <div class="header">
+    <h1>{{ game.name }}</h1>
+  </div>
+
+  <div class="game" [ngSwitch]="game.id">
+    <tic-tac-toe-game #game *ngSwitchCase="'tic-tac-toe'"></tic-tac-toe-game>
+  </div>
+
+  <div class="navigation">
+    <button class="btn" [routerLink]="['/browse']">Back to Games</button>
+    <button class="btn" (click)="newGame()">New Game</button>
+  </div>
+
+  
+</div>

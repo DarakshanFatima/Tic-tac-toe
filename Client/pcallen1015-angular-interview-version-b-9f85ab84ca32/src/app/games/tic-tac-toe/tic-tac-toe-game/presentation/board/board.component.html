@@ -1,0 +1,36 @@
+<div  *ngIf="choosePlayers">
+	<div class="gameStatus" >
+			Select Players
+	</div>
+	<div class="board">
+		<div *ngFor="let s of selectedPlayers; let i=index;">
+		<label>Player</label><label>{{i}}</label>  
+		<select class="selectPlayer" [(ngModel)]="s.name">
+			<option *ngFor="let p of players;">{{p.name}}</option>
+		</select>
+		<input class="symbol" type="text" [(ngModel)]="s.symbol">
+		</div>
+		<div class="newPlayer">
+			<label>New Player</label>
+			<input type="text" [(ngModel)]="newPlayer"> 
+			<button (click)="addPlayer(newPlayer)">Add</button>
+		</div>
+		<div>
+			<p>{{errorText}}</p>
+		</div>
+		<button class="startGame" (click)="startGame()">Start Game</button>
+	</div>
+</div>
+<div *ngIf="!choosePlayers">
+	<div class="gameStatus" >
+		{{gameStatusMessage}}
+	</div>
+	<div class="board" *ngFor="let row of [0,1,2]">
+		<cell *ngFor="let col of [0,1,2]"
+			[state]="squares[col+row*3]"
+			(click)="handleMove(col+row*3)"
+		>
+		</cell>
+	</div>
+</div>
+	
